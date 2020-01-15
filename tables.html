@@ -19,7 +19,7 @@
       ​
             <div class="text-center">
               <a href="/reserve"><button class="btn btn-lg btn-primary">Make Reservation</button></a>
-              <a href="/"><button class="btn btn-lg btn-default"></button></a>
+              <a href="/home"><button class="btn btn-lg btn-white">Home</button></a>
             </div>
           </div>
       ​
@@ -93,7 +93,7 @@
         function runWaitListQuery() {
       ​
           
-          $.ajax({ url: "/api/waitlist", method: "GET" })
+          $.ajax({ url: "/api/waitList", method: "GET" })
             .then(function(waitData) {
       ​
                       console.log(waitData);
