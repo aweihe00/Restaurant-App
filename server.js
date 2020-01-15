@@ -2,19 +2,21 @@ const express = require("express");
 const path = require("path");
 
 var app = express();
-var PORT = 3000;
+var PORT = 8080;
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-var Reservations = [
-{
-    
+
+const Reservations = [
+{   
 Name:"",
 Email: "",
 Phone: "",
 ID:""
 }
 ]
-var Waitlist = [
+
+const Waitlist = [
     {Name:"",
     Email: "",
     Phone: "",
@@ -24,22 +26,22 @@ var Waitlist = [
 
 let currentResNumber= 1; 
 //May need a different route here? 
-app.post("/api/reserve", function(req, res) {
-    const newReservation = req.body; 
-​
-    newReservation.tableNumber =  currentResNumber; 
+// app.post("/api/reserve", function(req, res) {
+//     const newReservation = req.body; 
+// ​
+//     newReservation.tableNumber =  currentResNumber; 
    
-    if (currentResNumber <= 5){
-        Reservations.push(newReservation); 
-    } else {
-        Waitlist.push(newReservation); 
-    }
+//     if (currentResNumber <= 5){
+//         Reservations.push(newReservation); 
+//     } else {
+//         Waitlist.push(newReservation); 
+//     }
 
-    currentResNumber++; 
-​
-    //Need to decide what we are doing after the post
-    res.json(); 
-}); 
+//     currentResNumber++; 
+// ​
+//     //Need to decide what we are doing after the post
+//     res.json(); 
+// }); 
 
 
 
@@ -54,10 +56,10 @@ app.get("/table", function(req, res) {
  app.get("/reserve", function(req, res) {
      res.sendFile(path.join(__dirname, "reserve.html"))
  });
-app.get("/api/characters", function(req, res) {
+app.get("/api/Reservations", function(req, res) {
     return res.join(characters)
 });
 
 app.listen(PORT, function(){
-    console.log("app listening on 3000" + PORT);
+    console.log("app listening on " + PORT);
 });
