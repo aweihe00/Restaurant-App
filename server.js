@@ -7,21 +7,11 @@ var PORT = 8080;
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
-const Reservations = [
-{   
-Name:"",
-Email: "",
-Phone: "",
-ID:""
-}
+let Reservations = [
 ]
 
-const Waitlist = [
-    {Name:"",
-    Email: "",
-    Phone: "",
-    ID:""
-    }
+let Waitlist = [
+    
 ]
 
 app.get("/", function(req, res) {
@@ -45,9 +35,17 @@ app.listen(PORT, function(){
     console.log("app listening on http://localhost:" + PORT);
 });
 
+app.get("/clear", function(req, res) {
+    Reservations=[]; 
+    Waitlist=[]; 
+    currentResNumber=1; 
+    console.log(Reservations); 
+    console.log(Waitlist); 
+    res.redirect("/"); 
+});
 
 let currentResNumber= 1; 
-app.post("/reserve", function(req, res) {
+app.post("/api/tables", function(req, res) {
 
     let newReservation = req.body;
     newReservation.tableNumber =  currentResNumber; 
