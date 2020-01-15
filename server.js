@@ -37,15 +37,14 @@ app.get("/tables", function(req, res) {
 app.get("/api/tables", function(req, res) {
     return res.json(Reservations);
 });
-app.get("api/waitlist/", function(req, res) {
+app.get("/api/waitlist", function(req, res) {
     return res.json(Waitlist);
 });
-
-app.get("api/Reservations/:Reservations")
 
 app.listen(PORT, function(){
     console.log("app listening on http://localhost:" + PORT);
 });
+
 
 let currentResNumber= 1; 
 app.post("/reserve", function(req, res) {
