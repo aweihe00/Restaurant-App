@@ -28,27 +28,29 @@ app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "home.html" ));
 });
 
-app.get("/table", function(req, res) {
+app.get("/tables", function(req, res) {
     res.sendFile(path.join(__dirname, "tables.html" ))
 });
  app.get("/reserve", function(req, res) {
      res.sendFile(path.join(__dirname, "reserve.html"))
  });
-app.get("/api/Reservations", function(req, res) {
-    return res.join(Reservations);
+app.get("/api/tables", function(req, res) {
+    return res.json(Reservations);
 });
 app.get("api/waitlist/", function(req, res) {
-    return res.join(Waitlist);
+    return res.json(Waitlist);
 });
 
+app.get("api/Reservations/:Reservations")
+
 app.listen(PORT, function(){
-    console.log("app listening on " + PORT);
+    console.log("app listening on http://localhost:" + PORT);
 });
 
 let currentResNumber= 1; 
 app.post("/reserve", function(req, res) {
-​
-    var newReservation = req.body;
+
+    let newReservation = req.body;
     newReservation.tableNumber =  currentResNumber; 
     
     if (currentResNumber <= 5){
@@ -56,7 +58,7 @@ app.post("/reserve", function(req, res) {
     } else {
         Waitlist.push(newReservation); 
     }
-​
+
     currentResNumber += 1;  
   
     console.log("The new Reservation is ")
